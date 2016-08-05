@@ -15,7 +15,7 @@ public class camera : MonoBehaviour
 
     private Vector3 screenUp; //스크린 위쪽방향
 
-	void Start ()
+	public void Start ()
     {
         Cursor.lockState = CursorLockMode.Confined;// 마우스가 스크린 밖으로 이동 못하게 함 , 에디터에서는 적용되지 않는다고 함...
 
@@ -30,7 +30,7 @@ public class camera : MonoBehaviour
         screenUp = (Vector3.up * 2 + Vector3.forward).normalized;   //크기 1로 정규화
 	}
 
-	void Update ()
+    public void Update ()
     {
         if(came.position.y <=15 && Input.GetAxis("Mouse ScrollWheel") < 0) //줌을 올릴때 동작함 , 최대줌 15
         {

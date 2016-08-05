@@ -36,49 +36,50 @@ public class Player1 : MonoBehaviour {
 	
 	void Update ()
     {
-        Ray ray = camera1.ScreenPointToRay(Input.mousePosition);                                   //카메라에서 마우스 방향으로 ray발사
+        if (Game.getInstance().getStatus() == Game.Status.P1) {
+            Ray ray = camera1.ScreenPointToRay(Input.mousePosition);                                   //카메라에서 마우스 방향으로 ray발사
 
-        RaycastHit objTile;                                                                        // ray에 닿은 물체의 정보
+            RaycastHit objTile;                                                                        // ray에 닿은 물체의 정보
 
-        if (flgBuyUnits == 2)                                                                      //유닛배치 flag 2
-        {
-           
-            foreach(GameObject a in summonAreaTile)                                                //유닛배치 가능 구역 표시
+            if (flgBuyUnits == 2)                                                                      //유닛배치 flag 2
             {
-                a.GetComponent<MeshRenderer>().material = summonArea;
-            }
 
-            if (Input.GetButton("Cancel"))                                                         //유닛 배치 취소
-            {
-                foreach (GameObject a in summonAreaTile)
+                foreach (GameObject a in summonAreaTile)                                                //유닛배치 가능 구역 표시
                 {
-                    a.GetComponent<MeshRenderer>().material = normal;
+                    a.GetComponent<MeshRenderer>().material = summonArea;
                 }
-                flgBuyUnits = 0;
-            }
 
-            if (Physics.Raycast(ray, out objTile, 100) 
-                && objTile.transform.GetComponent<MeshRenderer>().material.color == summonArea.color) //ray에 닿은 타일의 material이 소환영역이면 true
-            {                                                                                         //즉, material이 바뀔때 마다 한번씩만 호출된다.
-
-                //Debug.Log("hit");
-                back.GetComponent<MeshRenderer>().material = summonArea; //기존에 ray에 닿았던 타일의 material을 복구
-                back = objTile.transform.gameObject;                      //ray에 닿은 오브젝트를 back에 할당
-                back.GetComponent<MeshRenderer>().material = selected;    //ray에 닿은 오브젝트의 material을 변경
-
-                if (Input.GetMouseButton(0)) //배치하고 싶은 지형을 좌클릭
+                if (Input.GetButton("Cancel"))                                                         //유닛 배치 취소
                 {
-                    Instantiate(unitArcher, objTile.transform.position + Vector3.up, Quaternion.Euler(0, 60, 0));
-                    gold -= 200;
-                    flgBuyUnits = 0;
-
-                    foreach (GameObject a in summonAreaTile)                                                //유닛배치가 완료되면 타일 material을 원래대로 바꿈
-                    {
+                    foreach (GameObject a in summonAreaTile) {
                         a.GetComponent<MeshRenderer>().material = normal;
                     }
+                    flgBuyUnits = 0;
                 }
 
-            } 
+                if (Physics.Raycast(ray, out objTile, 100)
+                    && objTile.transform.GetComponent<MeshRenderer>().material.color == summonArea.color) //ray에 닿은 타일의 material이 소환영역이면 true
+                {                                                                                         //즉, material이 바뀔때 마다 한번씩만 호출된다.
+
+                    //Debug.Log("hit");
+                    back.GetComponent<MeshRenderer>().material = summonArea; //기존에 ray에 닿았던 타일의 material을 복구
+                    back = objTile.transform.gameObject;                      //ray에 닿은 오브젝트를 back에 할당
+                    back.GetComponent<MeshRenderer>().material = selected;    //ray에 닿은 오브젝트의 material을 변경
+
+                    if (Input.GetMouseButton(0)) //배치하고 싶은 지형을 좌클릭
+                    {
+                        Instantiate(unitArcher, objTile.transform.position + Vector3.up, Quaternion.Euler(0, 60, 0));
+                        gold -= 200;
+                        flgBuyUnits = 0;
+
+                        foreach (GameObject a in summonAreaTile)                                                //유닛배치가 완료되면 타일 material을 원래대로 바꿈
+                        {
+                            a.GetComponent<MeshRenderer>().material = normal;
+                        }
+                    }
+
+                }
+            }
         }
 	}
 
@@ -92,7 +93,7 @@ public class Player1 : MonoBehaviour {
 
         if(GUI.Button(new Rect(Screen.width -210, Screen.height - 50, 200, 40), "Turn Over"))
         {
-
+            Game.getInstance().setStatus(Game.Status.P2);
         }
 
         if(flgBuyUnits == 0)                                                           //유닛 구매 버튼 표시 flag 0

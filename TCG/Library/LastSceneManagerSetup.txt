@@ -1,4 +1,4 @@
 sceneSetups:
-- path: C:/Users/mgu4/Desktop/3DCar111/Assets/Scene/main.unity
+- path: Assets/01.Scenes/TCG.unity
   isLoaded: 1
   isActive: 1
