@@ -3,10 +3,15 @@ using System.Collections;
 
 public class Game : MonoBehaviour {
 
-    public enum Status { P1, P2, Pause, P1won, P2won };
     public static Game instance;
 
+    public enum Status { P1, P2, P1won, P2won };
     private Status status;
+
+    public bool paused;
+
+    private Player1 p1;
+    private Player2 p2;
 
     public static Game getInstance() {
         return instance;
@@ -21,8 +26,12 @@ public class Game : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
+    public void Awake () {
         instance = this;
+
+        p1 = GetComponent<Player1>();
+        p2 = GetComponent<Player2>();
+
         status = Status.P1;
 	}
 
@@ -30,10 +39,10 @@ public class Game : MonoBehaviour {
 	void Update () {
         switch (status) {
             case Status.P1:
+                p1.enabled = true;
                 break;
             case Status.P2:
-                break;
-            case Status.Pause:
+                p2.enabled = true;
                 break;
             case Status.P1won:
                 break;

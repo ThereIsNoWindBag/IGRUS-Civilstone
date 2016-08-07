@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Player1 : MonoBehaviour {
 
-    public int gold;        //골드량
+    public int gold;
     public int mana;
     public int cp;
-    public int population;
+    public int population;  //플레이어1에게 주워진 자원들
 
     public Camera camera1;          //카메라에서 마우스 방향으로 Ray를 쏘기 위한 기준 카메라
 
@@ -21,22 +21,27 @@ public class Player1 : MonoBehaviour {
 
     private int flgBuyUnits = 0;    //유닛 구매 flag
 
-    private void Awake ()
+    void Awake ()
     {
-        summonAreaTile = GameObject.FindGameObjectsWithTag("summon");
-    }
-
-	void Start ()
-    {
+        enabled = false;
+ 
         gold = 1000;
         mana = 3;
         cp = 5;
         population = 0;
+
+        summonAreaTile = GameObject.FindGameObjectsWithTag("summon");
+    }
+
+    void OnEnable()
+    {
+        CameraMove.getInstance().transform.position = new Vector3(2.598f, 15, -5.821666f);
     }
 	
 	void Update ()
     {
-        if (Game.getInstance().getStatus() == Game.Status.P1) {
+        if (Game.getInstance().getStatus() == Game.Status.P1) {     //자신의 턴인지 확인
+
             Ray ray = camera1.ScreenPointToRay(Input.mousePosition);                                   //카메라에서 마우스 방향으로 ray발사
 
             RaycastHit objTile;                                                                        // ray에 닿은 물체의 정보
@@ -91,8 +96,8 @@ public class Player1 : MonoBehaviour {
         GUI.Label(new Rect(10, 50, 100, 20), "CP : " + cp.ToString());
         GUI.Label(new Rect(10, 70, 100, 20), "Population : " + population.ToString() + "/20");
 
-        if(GUI.Button(new Rect(Screen.width -210, Screen.height - 50, 200, 40), "Turn Over"))
-        {
+        if(GUI.Button(new Rect(Screen.width -210, Screen.height - 50, 200, 40), "Turn Over")) { //턴 종료 버튼
+            enabled = false;
             Game.getInstance().setStatus(Game.Status.P2);
         }
 

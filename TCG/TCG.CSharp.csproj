@@ -63,12 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\02.Scripts\CameraMove.cs" />
     <Compile Include="Assets\02.Scripts\Game.cs" />
     <Compile Include="Assets\02.Scripts\Player1.cs" />
     <Compile Include="Assets\02.Scripts\Player2.cs" />
-    <Compile Include="Assets\02.Scripts\camera.cs" />
+    <Compile Include="Assets\02.Scripts\UnitInfo.cs" />
     <Compile Include="Assets\02.Scripts\playArcher.cs" />
-    <Compile Include="Assets\02.Scripts\unitsInfo.cs" />
     <Compile Include="Assets\05.Models\Toon Character Pack\Scripts\AnimTriggers.cs" />
     <Compile Include="Assets\05.Models\Toon Character Pack\Scripts\BotControlScript.cs" />
     <Compile Include="Assets\05.Models\Toon Character Pack\Scripts\SmoothCameraOrbit.cs" />

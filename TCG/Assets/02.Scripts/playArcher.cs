@@ -7,11 +7,11 @@ public class playArcher : MonoBehaviour
 
     void Awake ()
     {
-        int attack  = unitsInfo.attack[unitNum];
-        int hp      = unitsInfo.hp[unitNum];
-        int speed   = unitsInfo.speed[unitNum];
-        int control = unitsInfo.control[unitNum];
-        int range   = unitsInfo.range[unitNum];
+        int attack  = UnitInfo.attack[unitNum];
+        int hp      = UnitInfo.hp[unitNum];
+        int speed   = UnitInfo.speed[unitNum];
+        int control = UnitInfo.control[unitNum];
+        int range   = UnitInfo.range[unitNum];
     }
 	void Start ()
     {

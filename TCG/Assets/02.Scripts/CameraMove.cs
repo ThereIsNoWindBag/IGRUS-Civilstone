@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class camera : MonoBehaviour
+public class CameraMove : MonoBehaviour
 {
-    private Transform came;
+    public static CameraMove instance;
+
+    public Transform came;
     public float wheelSpeed = 500f; //휠 속도
     public float screenSpeed = 15.0f; //스크린 속도
 
@@ -15,11 +17,22 @@ public class camera : MonoBehaviour
 
     private Vector3 screenUp; //스크린 위쪽방향
 
-	public void Start ()
+    public static CameraMove getInstance()
+    {
+        return instance;
+    }
+
+    void Awake()
+    {
+        instance = this;
+    }
+
+	void Start ()
     {
         Cursor.lockState = CursorLockMode.Confined;// 마우스가 스크린 밖으로 이동 못하게 함 , 에디터에서는 적용되지 않는다고 함...
 
         came = GetComponent<Transform>();
+        //TODO : X 각도 60으로 고정
 
         //mousePosition = Vector3.zero; //이거 필요있음?
         scrLside = Screen.width / 200;
@@ -30,7 +43,7 @@ public class camera : MonoBehaviour
         screenUp = (Vector3.up * 2 + Vector3.forward).normalized;   //크기 1로 정규화
 	}
 
-    public void Update ()
+    void Update ()
     {
         if(came.position.y <=15 && Input.GetAxis("Mouse ScrollWheel") < 0) //줌을 올릴때 동작함 , 최대줌 15
         {
