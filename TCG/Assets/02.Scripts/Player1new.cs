@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player1 : MonoBehaviour {
+public class Player1new : MonoBehaviour {
 
     public int gold;
     public int mana;
