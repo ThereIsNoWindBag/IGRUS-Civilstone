@@ -10,6 +10,7 @@ public class CameraMove : MonoBehaviour
     public float screenSpeed = 15.0f; //스크린 속도
 
     private Vector3 mousePosition; //마우스 좌표값 받을 변수
+
     private float scrLside;
     private float scrRside;
     private float scrUside;
@@ -25,10 +26,7 @@ public class CameraMove : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
 
-	void Start ()
-    {
         Cursor.lockState = CursorLockMode.Confined;// 마우스가 스크린 밖으로 이동 못하게 함 , 에디터에서는 적용되지 않는다고 함...
 
         came = GetComponent<Transform>();
@@ -41,7 +39,7 @@ public class CameraMove : MonoBehaviour
         scrDside = Screen.height / 200;
 
         screenUp = (Vector3.up * 2 + Vector3.forward).normalized;   //크기 1로 정규화
-	}
+    }
 
     void Update ()
     {

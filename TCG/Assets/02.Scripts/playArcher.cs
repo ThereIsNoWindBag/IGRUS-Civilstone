@@ -23,11 +23,11 @@ public class playArcher : MonoBehaviour
 
     void Awake ()
     {
-        attack  = unitsInfo.attack[unitNum];
-        hp      = unitsInfo.hp[unitNum];
-        speed   = unitsInfo.speed[unitNum];
-        control = unitsInfo.control[unitNum];
-        range   = unitsInfo.range[unitNum];
+        attack  = UnitInfo.attack[unitNum];
+        hp      = UnitInfo.hp[unitNum];
+        speed   = UnitInfo.speed[unitNum];
+        control = UnitInfo.control[unitNum];
+        range   = UnitInfo.range[unitNum];
 
         arrowObj = GetComponent<Transform>().FindChild("Arrow").gameObject;   //오브젝트 하위의 Arrow캔버스를 찾는다
         unitUIObj = GetComponent<Transform>().FindChild("/Archer Girl/unitUI/UIPanel").gameObject; //오브젝트 하위의 UIPanel을 찾는다
