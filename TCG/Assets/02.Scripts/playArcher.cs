@@ -152,6 +152,8 @@ public class playArcher : MonoBehaviour
                 unitUIOn = false;
                 unitUIObj.SetActive(false);
             }
+
+            AttackRange();
         }
 
         if(whatButton == 2)
@@ -539,18 +541,19 @@ public class playArcher : MonoBehaviour
 
         if(materialflg == true)
         {
-            for(int i = 0; i < range; i++)
+
+            for (int i = 1; i <= range; i++)
             {
-                tileCoorInfo[i, 0, 0] = i * 6 + 6;
-                for (int j = 0; j < i; j++)
+                
+                for (int j = 1; j <= i; j++)
                 {
- 
-                    tileCoorInfo[i, j * 6 - 5, 0] = coorR + i - j; tileCoorInfo[i, j * 6 - 5, 1] = coorRU + j;
-                    tileCoorInfo[i, j * 6 - 4, 0] = coorR + i;     tileCoorInfo[i, j * 6 - 4, 1] = coorRU - i + j;
-                    tileCoorInfo[i, j * 6 - 3, 0] = coorR + j;     tileCoorInfo[i, j * 6 - 3, 1] = coorRU - i;
-                    tileCoorInfo[i, j * 6 - 2, 0] = coorR - i + j; tileCoorInfo[i, j * 6 - 2, 1] = coorRU - j;
-                    tileCoorInfo[i, j * 6 - 1, 0] = coorR - i;     tileCoorInfo[i, j * 6 - 1, 1] = coorRU + i - j;
-                    tileCoorInfo[i, j * 6    , 0] = coorR - j;     tileCoorInfo[i, j * 6    , 1] = coorRU + i;
+
+                    tileCoorInfo[i - 1, j * 6 - 6, 0] = coorR + i - j; tileCoorInfo[i - 1, j * 6 - 6, 1] = coorRU + j;
+                    tileCoorInfo[i - 1, j * 6 - 5, 0] = coorR + i;     tileCoorInfo[i - 1, j * 6 - 5, 1] = coorRU - i + j;
+                    tileCoorInfo[i - 1, j * 6 - 4, 0] = coorR + j;     tileCoorInfo[i - 1, j * 6 - 4, 1] = coorRU - i;
+                    tileCoorInfo[i - 1, j * 6 - 3, 0] = coorR - i + j; tileCoorInfo[i - 1, j * 6 - 3, 1] = coorRU - j;
+                    tileCoorInfo[i - 1, j * 6 - 2, 0] = coorR - i;     tileCoorInfo[i - 1, j * 6 - 2, 1] = coorRU + i - j;
+                    tileCoorInfo[i - 1, j * 6 - 1, 0] = coorR - j;     tileCoorInfo[i - 1, j * 6 - 1, 1] = coorRU + i;
                 }
             }
 
@@ -558,7 +561,7 @@ public class playArcher : MonoBehaviour
             {
                 int notExist = 0;
 
-                for(int l = 0; l < k * 6 + 6; k++)
+                for(int l = 0; l < k * 6 + 6; l++)
                 {
                     if(GameObject.Find("ground(" + tileCoorInfo[k, l, 0] + "," + tileCoorInfo[k, l, 1] + ")") == null)
                     {
@@ -573,7 +576,7 @@ public class playArcher : MonoBehaviour
 
             for (int dist = 0; dist < range; dist++)
             {
-                for (int tile = 0; tile < dist * 6 + 6; dist++)
+                for (int tile = 0; tile < dist * 6 + 6; tile++)
                 {
                     if (movableTile[dist][tile] == null)
                         break;
