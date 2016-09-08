@@ -45,10 +45,10 @@ public class Player2 : MonoBehaviour
 
     void Start()
     {
-        selected = system.selected;
-        normal = system.normal;
-        summonArea = system.summonArea;
-        unitArcher = system.archer;
+        selected = Game.selected;
+        normal = Game.normal;
+        summonArea = Game.summonArea;
+        unitArcher = Game.archer;
 
         gold = 1000;
         mana = 3;
@@ -108,14 +108,14 @@ public class Player2 : MonoBehaviour
 
                 groundName = back.name;
 
-                (instantUnit.GetComponent<playArcher>() as playArcher).coorR = GetR(groundName);
-                (instantUnit.GetComponent<playArcher>() as playArcher).coorRU = GetRU(groundName);
+                (instantUnit.GetComponent<PlayArcher>() as PlayArcher).coorR = GetR(groundName);
+                (instantUnit.GetComponent<PlayArcher>() as PlayArcher).coorRU = GetRU(groundName);
 
-                system.notMovable[system.unitCount, 0] = int.Parse(groundName.Substring(7, 1));
-                system.notMovable[system.unitCount, 1] = int.Parse(groundName.Substring(9, 1));
-                (instantUnit.GetComponent<playArcher>() as playArcher).unitCountNum = system.unitCount;
+                Game.notMovable[Game.unitCount, 0] = int.Parse(groundName.Substring(7, 1));
+                Game.notMovable[Game.unitCount, 1] = int.Parse(groundName.Substring(9, 1));
+                (instantUnit.GetComponent<PlayArcher>() as PlayArcher).unitCountNum = Game.unitCount;
 
-                system.unitCount++;
+                Game.unitCount++;
 
                 gold -= 200;
                 flgBuyUnits = 0;
@@ -145,19 +145,19 @@ public class Player2 : MonoBehaviour
                     mouseclicked = true;
 
 
-                    if ((rayObj.transform.GetComponent("playArcher") as playArcher).ctrlSelected == false
+                    if ((rayObj.transform.GetComponent("PlayArcher") as PlayArcher).ctrlSelected == false
                     && mouseUp == false)
                     {
-                        (rayObj.transform.GetComponent("playArcher") as playArcher).ctrlSelected = true;
-                        cp -= playArcher.control;
+                        (rayObj.transform.GetComponent("PlayArcher") as PlayArcher).ctrlSelected = true;
+                        cp -= PlayArcher.control;
                     }
 
 
-                    else if ((rayObj.transform.GetComponent("playArcher") as playArcher).ctrlSelected == true
+                    else if ((rayObj.transform.GetComponent("PlayArcher") as PlayArcher).ctrlSelected == true
                         && mouseUp == true)
                     {
-                        (rayObj.transform.GetComponent("playArcher") as playArcher).ctrlSelected = false;
-                        cp += playArcher.control;
+                        (rayObj.transform.GetComponent("PlayArcher") as PlayArcher).ctrlSelected = false;
+                        cp += PlayArcher.control;
                     }
                 }
             }
@@ -189,9 +189,9 @@ public class Player2 : MonoBehaviour
             if (Physics.Raycast(rayUnitUi, out rayObj, 50)
                 && rayObj.transform.tag == "Unit2"
                 && Input.GetMouseButton(0)
-                && (rayObj.transform.GetComponent("playArcher") as playArcher).ctrlSelected == true)
+                && (rayObj.transform.GetComponent("PlayArcher") as PlayArcher).ctrlSelected == true)
             {
-                (rayObj.transform.GetComponent("playArcher") as playArcher).unitUIOn = true;
+                (rayObj.transform.GetComponent("PlayArcher") as PlayArcher).unitUIOn = true;
             }
         }
     }
@@ -211,7 +211,7 @@ public class Player2 : MonoBehaviour
             (this.gameObject.GetComponent<Player2>() as Player2).enabled = false;
             (this.gameObject.GetComponent<Player1>() as Player1).enabled = true;
 
-            system.whoseTurn = true;
+            Game.whoseTurn = true;
         }
 
         if (selectCtrl == false)

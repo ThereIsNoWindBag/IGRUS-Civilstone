@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playArcher : MonoBehaviour
+public class PlayArcher : MonoBehaviour
 {
     public static int unitNum = 0;              //유닛 번호
     public int unitCountNum;
@@ -57,16 +57,16 @@ public class playArcher : MonoBehaviour
 
     void Awake ()
     {
-        selectedTile = system.selected;
-        summonTile = system.summonArea;
-        normalTile = system.normal;
-        attackTile = system.attack;
+        selectedTile = Game.selected;
+        summonTile = Game.summonArea;
+        normalTile = Game.normal;
+        attackTile = Game.attack;
 
-        attack  = unitsInfo.attack[unitNum];
-        hp      = unitsInfo.hp[unitNum];
-        speed   = unitsInfo.speed[unitNum];
-        control = unitsInfo.control[unitNum];
-        range   = unitsInfo.range[unitNum];
+        attack  = UnitsInfo.attack[unitNum];
+        hp      = UnitsInfo.hp[unitNum];
+        speed   = UnitsInfo.speed[unitNum];
+        control = UnitsInfo.control[unitNum];
+        range   = UnitsInfo.range[unitNum];
 
         leftSpeed = speed;
         leftHp = hp;
@@ -74,7 +74,7 @@ public class playArcher : MonoBehaviour
         coorR = 0;
         coorRU = 0;
 
-        if(system.whoseTurn == true)
+        if(Game.whoseTurn == true)
             came = GameObject.Find("Camera1").GetComponent<Camera>() as Camera;
         else
             came = GameObject.Find("Camera2").GetComponent<Camera>() as Camera;
@@ -246,8 +246,8 @@ public class playArcher : MonoBehaviour
                 coorR = finishPointR;
                 coorRU = finishPointRU;
 
-                system.notMovable[unitCountNum, 0] = coorR;
-                system.notMovable[unitCountNum, 1] = coorRU;
+                Game.notMovable[unitCountNum, 0] = coorR;
+                Game.notMovable[unitCountNum, 1] = coorRU;
 
                 for (int dist = 0; dist < leftSpeed; dist++)
                 {
@@ -329,10 +329,10 @@ public class playArcher : MonoBehaviour
 
         for (int i = 0; i <= 5; i++)
         {
-            for (int j = 1; j <= system.unitCount; j++)
+            for (int j = 1; j <= Game.unitCount; j++)
             {
-                if (around6Dir[i, 0] == system.notMovable[j - 1, 0]
-                    && around6Dir[i, 1] == system.notMovable[j - 1, 1])
+                if (around6Dir[i, 0] == Game.notMovable[j - 1, 0]
+                    && around6Dir[i, 1] == Game.notMovable[j - 1, 1])
                 {
                     around6Dir[i, 0] = 0; around6Dir[i, 1] = 0;
                     find = true;

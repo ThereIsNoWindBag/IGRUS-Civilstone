@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class camera : MonoBehaviour
+public class CameraMove : MonoBehaviour
 {
+    public static CameraMove instance;
+
     private Transform came;
     public float wheelSpeed = 500f; //휠 속도
-    public float screenSpeed = 15.0f; //스크린 속도
+    public float screenSpeed = 15.0f;   //스크린 속도
 
-    private Vector3 mousePosition; //마우스 좌표값 받을 변수
+    private Vector3 mousePosition;  //마우스 좌표값 받을 변수
+
     private float scrLside;
     private float scrRside;
     private float scrUside;
     private float scrDside;
 
-    private Vector3 screenUp; //스크린 위쪽방향
+    private Vector3 screenUp;   //스크린 위쪽방향
 
-	void Start ()
+    public static CameraMove getInstance()
     {
-        Cursor.lockState = CursorLockMode.Confined;// 마우스가 스크린 밖으로 이동 못하게 함 , 에디터에서는 적용되지 않는다고 함...
+        return instance;
+    }
+
+    void Awake()
+    {
+        Cursor.lockState = CursorLockMode.Confined; // 마우스가 스크린 밖으로 이동 못하게 함 , 에디터에서는 적용되지 않는다고 함...
 
         came = GetComponent<Transform>();
+        //TODO : X 각도 60도로 고정
 
-        //mousePosition = Vector3.zero; //이거 필요있음?
         scrLside = Screen.width / 200;
         scrRside = Screen.width * 199 / 200;
         scrUside = Screen.height * 199 / 200;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class unitsInfo : MonoBehaviour
+public class UnitsInfo : MonoBehaviour
 {
     public static int[] attack  = new int[] { 2 };
     public static int[] hp      = new int[] { 4 };

@@ -8,12 +8,12 @@ public class UIMgr : MonoBehaviour
 
     public void OnClickAttack()
     {
-        (this.gameObject.transform.root.gameObject.GetComponent<playArcher>() as playArcher).whatButton = 1;
+        (this.gameObject.transform.root.gameObject.GetComponent<PlayArcher>() as PlayArcher).whatButton = 1;
     }
 	
     public void OnClickMove()
     {
-        (this.gameObject.transform.root.gameObject.GetComponent<playArcher>() as playArcher).whatButton = 2;
+        (this.gameObject.transform.root.gameObject.GetComponent<PlayArcher>() as PlayArcher).whatButton = 2;
     }
 
     public void OnClickSkill()
@@ -28,7 +28,7 @@ public class UIMgr : MonoBehaviour
 
     public void OnclickCancel()
     {
-        (this.gameObject.transform.root.gameObject.GetComponent<playArcher>() as playArcher).whatButton = 5;
+        (this.gameObject.transform.root.gameObject.GetComponent<PlayArcher>() as PlayArcher).whatButton = 5;
         
     }
 }

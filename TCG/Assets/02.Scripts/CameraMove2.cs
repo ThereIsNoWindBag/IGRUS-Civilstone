@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class camera2 : MonoBehaviour {
+public class CameraMove2 : MonoBehaviour {
 
     private Transform came;
     public float wheelSpeed = 500f; //휠 속도
