@@ -1,2 +1,3 @@
 # IGRUS_Civilstone
-우리는 만든다 게임을
+
+2016 IGRUS-IGDC Civilization-Like game.
